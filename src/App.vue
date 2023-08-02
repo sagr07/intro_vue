@@ -1,73 +1,82 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<template>
+  <h1 style="text-align: center;">Counter</h1>
+  <div style="text-align: center;" :class="red">
+<h1 >{{ number }}</h1>
 
+<div>
+
+<button @click="number+=1" v-bind:disabled="number==10" >increase</button>
+
+<button @click="number-=1" v-bind:disabled="number==1">decrease</button>
+</div>
+</div>
+<div>
+  <h1>v-if and v-model </h1>
+<h2>Check your age for Driving</h2>
+  <input v-model="age" type="text" id="agee"> 
+ <template v-if="age==0">
+
+ </template>
+  <template v-if="age>1 && age<18">
+    
+    <h2 class="red">you are too young to drive</h2>
+  
+
+  </template>
+  <template v-if="age>=18 && age<=40">
+    <h2 class="green">You can drive...</h2>
+  
+  </template>
+  <template v-if="age>=40" >
+    <h2 class="blue">you are too old to drive</h2>
+
+  </template>
+</div>
+</template>
+<script>
+export default{
+  name:"app",
+  data(){
+    return{
+      number:0,
+      age:0,
+      show:true,
+    
+      
+    }
+
+  },
+  methods:{
+    increment(){
+      if(number>=10){
+        this.number+=1;
+      }
+    },
+    decrement: function(){
+      if(number>=1){
+        this.number-=1
+      }
+
+    },
+
+     demo:()=>{
+       const a=document.getElementById("agee").value
+       this.age=a
+      console.log(this.age);
+     }
+  }
+}
+  
 
 </script>
-
-<template>
-  <RouterView />
-</template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style>
+.red{
+  color: red;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.green{
+  color: green;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.blue{
+  color: blue;
 }
 </style>
